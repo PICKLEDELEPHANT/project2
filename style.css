@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .game-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000;
+    background-color: #fff;
+  }
+  
+  .score {
+    margin-bottom: 20px;
+  }
+  
+  .win-gif, .lose-gif {
+    display: none;
+    width: 300px;
+    height: 300px;
+  }

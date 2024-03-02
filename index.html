@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .game-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #000;
+            background-color: #fff;
+        }
+        .score {
+            margin-bottom: 20px;
+        }
+        .win-gif, .lose-gif {
+            display: none;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-area">
+            <div class="score">Score: <span id="score">0</span></div>
+            <button id="start-btn">Start Game</button>
+            <button id="guess-btn">Guess</button>
+            <div class="win-gif"><img src="win.gif" alt="Win"></div>
+            <div class="lose-gif"><img src="lose.gif" alt="Lose"></div>
+        </div>
+    </div>
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const guessBtn = document.getElementById('guess-btn');
+        const scoreElem = document.getElementById('score');
+        const winGif = document.querySelector('.win-gif');
+        const loseGif = document.querySelector('.lose-gif');
+        let score = 0;
+        let secretNumber;
+        let guess;
+
+        startBtn.addEventListener('click', () => {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            guessBtn.disabled = false;
+            startBtn.disabled = true;
+        });
+
+        guessBtn.addEventListener('click', () => {
+            guess = parseInt(prompt('Guess a number between 1 and 100:'));
+            if (guess === secretNumber) {
+                score++;
+                scoreElem.textContent = score;
+                winGif.style.display = 'block';
+                guessBtn.disabled = true;
+            } else if (guess < secretNumber) {
+                alert('Too low! Try again.');
+            } else {
+                alert('Too high! Try again.');
+            }
+            if (score >= 5) {
+                alert('Congratulations! You won the game.');
+                startBtn.disabled = false;
+                guessBtn.disabled = true;
+                winGif.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
